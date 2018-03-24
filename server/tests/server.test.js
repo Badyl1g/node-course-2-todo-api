@@ -43,7 +43,7 @@ describe('POST /todos', () => {
             expect(todos[0].text).toBe(text);
             done();
           })
-          .catch(e => done(e));
+          .catch(err => done(err));
       });
   });
 
@@ -58,10 +58,10 @@ describe('POST /todos', () => {
         }
         Todo.find()
           .then(todos => {
-            expect(todos.length).toBe(2);
+            expect(todos.length).toBe(3);
             done();
           })
-          .catch(e => done(e));
+          .catch(err => done(err));
       });
   });
 
