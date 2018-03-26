@@ -9,8 +9,8 @@ if (process.env.PORT){
  connectPath = "mongodb://<dbuser>@ds115579.mlab.com:15579/durgesh-todo";
  options= {
      auth: {
-         user: '<dbuser>',
-         password: '<dbpassword>'
+         user: '<Wojtaszek>',
+         password: '<P@ssw0rd>'
      }
  }
 } else {
