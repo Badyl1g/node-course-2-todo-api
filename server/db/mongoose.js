@@ -25,7 +25,7 @@ const db = {
   mlab: 'mongodb://Wojtaszek:P@ssw0rd@ds115579.mlab.com:15579/nodejs-course'
 };
 
-mongoose.connect(db.localhost || db.mlab);
+mongoose.connect( process.env.PORT ? db.mlab : db.localhost);
 
 module.exports = { mongoose }
 
