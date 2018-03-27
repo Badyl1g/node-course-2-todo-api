@@ -21,6 +21,10 @@ app.post('/todos', (req, res) => {
     .catch(err => res.status(400).send(err));
 });
 
+app.get('/', (req, res) => {
+  res.send('Todo App, go to /todos, or todos/:id');
+});
+
 app.get('/todos', (req, res) => {
   Todo.find()
     .then(todos => res.send({todos}))
