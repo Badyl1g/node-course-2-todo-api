@@ -26,9 +26,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
 
     db.collection('Users')
     .findOneAndUpdate( // takes up to 4 {object} arguments
-      {
-        name: 'Jim Carrey'
-      }, 
+      { name: 'Jim Carrey' }, 
       {
         $set: {
           name: 'Robert Downey Jr.',
