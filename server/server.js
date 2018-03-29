@@ -14,16 +14,7 @@ const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
-app.post('/todos', (req, res) => {
-  const todo = new Todo({
-    text: req.body.text
-  });
-
-  todo.save()
-    .then(doc => res.send(doc))
-    .catch(err => res.status(400).send(err));
-});
-
+// GET /todos
 app.get('/', (req, res) => {
   res.send('Todo App, go to /todos, or todos/:id');
 });
@@ -51,6 +42,18 @@ app.get('/todos/:id', (req, res) => {
     .catch(err => res.status(404).send());
 });
 
+// POST /todos
+app.post('/todos', (req, res) => {
+  const todo = new Todo({
+    text: req.body.text
+  });
+
+  todo.save()
+    .then(doc => res.send(doc))
+    .catch(err => res.status(400).send(err));
+});
+
+// DELETE /todos
 app.delete('/todos/:id', (req, res) => {
   const id = req.params.id;
 
@@ -68,10 +71,11 @@ app.delete('/todos/:id', (req, res) => {
     .catch((err => res.status(400).send()));
 });
 
+// PATCH / todos
 app.patch('/todos/:id', (req, res) => {
   const id = req.params.id;
-  const body = _.pick(req.body, ['text', 'completed']);
-  // const body = {...req.body.text, ...req.body.completed}
+  // const body = _.pick(req.body, ['text', 'completed']);
+  const body = { text: req.body.text, completed: req.body.completed }
 
   if (!ObjectID.isValid(id)) {
     return res.status(404).send();
@@ -92,6 +96,18 @@ app.patch('/todos/:id', (req, res) => {
       res.send({ todo });
     })
     .catch(err => res.status(400).send());
+});
+
+// POST /users
+app.post('/users', (req, res) => {
+  // const body = _.pick(req.body, ['email','password']);
+  const body = { email: req.body.email, password: req.body.password };
+  const newUser = new User(body);
+
+  newUser.save()
+    .then(() => newUser.generateAuthToken())
+    .then(token => res.header('x-auth', token).send(newUser))
+    .catch(err => res.status(400).send(err));
 });
 
 app.listen(port, () => console.log(`Started on port ${port}`));
