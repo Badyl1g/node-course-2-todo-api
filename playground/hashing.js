@@ -12,7 +12,7 @@ const password = '123abc!';
 
 const hashedPassword = '$2a$10$abpmCyr4TrUc9vIVIIo9eexS2XoTy24vwJqoeWKwsDBShy30sWZai';
 
-bcrypt.compare('123', hashedPassword, (err, res) => console.log(res));
+bcrypt.compare('123', hashedPassword, (err, res) => console.log(res)); // compares hash of given password and hashed password
 
 // const data = {
 //   id: 10
