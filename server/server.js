@@ -123,7 +123,6 @@ app.get('/users/me', authenticate, (req, res) => { // use middleware here
 // POST /users/login
 app.post('/users/login', (req, res) => {
   const body = { email: req.body.email, password: req.body.password };
-  const newUser = new User(body);
 
   User.findByCredentials(body.email, body.password)
     .then(user => {

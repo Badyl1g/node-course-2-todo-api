@@ -1,5 +1,6 @@
 const env = process.env.NODE_ENV || 'development'; // if NODE_ENV does not exist, default will be 'development'
-// NODE_ENV is set on by Heroku
+
+// NODE_ENV is set on by Heroku!
 
 if (env === 'development' || env === 'test') {
   const config = require('./config.json');
